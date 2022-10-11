@@ -6,9 +6,7 @@
 
     $obResponse = new \App\Http\Response(200, 'Olá Mundo');
 
-    echo "<pre>";
-    print_r($obResponse);
-    echo "</pre>";
+    $obResponse->sendResponse();
 
     exit;
 

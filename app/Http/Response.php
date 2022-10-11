@@ -34,6 +34,30 @@ class Response{
         $this->headers[$key] = $value;
     }
 
+    //Método responsável por enviar os headers para o navegador
+    private function sendHeaders(){
+        //Status
+        http_response_code($this->httpCode);
+
+        //Enviar headers
+        foreach($this->headers as $key=>$value){
+            header($key.': '.$value);
+        }
+    }
+
+    //Método responsável por enviar a resposta para o usuário
+    public function sendResponse(){
+        //Envia os headers
+        $this->sendHeaders();
+
+        //Imprimi o conteúdo
+        switch ($this->contentType) {
+            case 'text/html':
+                echo $this->content;
+                exit;
+        }
+    }
+
 }
 
 ?>
